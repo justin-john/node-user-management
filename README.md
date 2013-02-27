@@ -18,7 +18,7 @@ Features include:
 Documentation
 -------------
 
-The bulk of the documentation is stored in the `doc/index.md`
+The bulk of the documentation is stored in the `docs/index.md`
 file in this bundle:
 
 [Read the Documentation for master](https://github.com/justin-john/node-user-management/blob/master/docs/index.md)
