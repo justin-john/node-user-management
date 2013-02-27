@@ -9,15 +9,16 @@ Getting Started With Node User Management
 ## Installation
 
 Step 1. Clone the repository.
-Step 2. Go to root of your cloned directory and use command
+
+Step 2. Go to root of your cloned directory and use below command in terminal
+    
     npm install
-in terminal/shell.
-Step 3. Enter command
+
+Step 3. Enter command below command. Use this command after any change is made in file.
+
     node app.js
-Use this command after any change made in file.
-Step 4. Go to url http://localhost:3000.
 
 
-** Note **
+Step 4. Go to url **http://localhost:3000**.
 
-Use
+
