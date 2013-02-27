@@ -6,6 +6,9 @@ Getting Started With Node User Management
 1. Install node to your server.
 2. Install Mongo Driver in server.
 
+**Note:**
+Please create a database called **test** in MongoDB.
+
 ## Installation
 
 Step 1. Clone the repository.
