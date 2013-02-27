@@ -14,13 +14,13 @@ Features include:
 - Registration support
 - Users can be edited and deleted
 
-**Caution:** This application is developed in sync with [Express framework](http://expressjs.com/) for node.js.
+**Caution:** This repository is developed in sync with [Express framework](http://expressjs.com/) for node.js.
 
 Documentation
 -------------
 
 The bulk of the documentation is stored in the `docs/index.md`
-file in this bundle:
+file in this repository:
 
 [Read the Documentation for master](https://github.com/justin-john/node-user-management/blob/master/docs/index.md)
 
