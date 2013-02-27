@@ -21,12 +21,12 @@ Documentation
 The bulk of the documentation is stored in the `doc/index.md`
 file in this bundle:
 
-[Read the Documentation for master](https://github.com/justin-john/node-user-management/doc/index.md)
+[Read the Documentation for master](https://github.com/justin-john/node-user-management/blob/master/docs/index.md)
 
 Installation
 ------------
 
-All the installation instructions are located in [documentation](https://github.com/justin-john/node-user-management/docs/index.md).
+All the installation instructions are located in [documentation](https://github.com/justin-john/node-user-management/blob/master/docs/index.md).
 
 License
 -------
