@@ -1,0 +1,18 @@
+<% include header %>
+
+<h1 class="txt-cntr">NODE USER MANAGEMENT</h1>
+
+<div class ="loginContainer">
+    <% if(!user) {  %>
+    <a href="/login">LOGIN USING APP</a>
+    <% } else {  %>
+    <a href="/logout">LOGOUT</a>
+    <% }   %>
+</div>
+<h3 class="bg-head">Welcome to your node.js app</h3>
+
+<p class="content"> A Simple node.js application for User Mangement with Express Framework. </p>
+
+<p class="content"> This application generally focuses to beginners in node.js. The application will give them an general idea to how to combine the node.js with Express framework to MongoDB as data storage. </p>
+
+<% include footer %>

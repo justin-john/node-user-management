@@ -1,0 +1,36 @@
+<% include header %>
+
+<h1 class="txt-cntr">NODE JS SAMPLE APP</h1>
+
+<div class ="loginContainer">
+    <% if(!user) {  %>
+    <a href="/login">LOGIN USING APP</a>
+    <% } else {  %>
+    <a href="/logout">LOG OUT</a>
+    <% }   %>
+</div>
+
+<TABLE class="listing" BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="1">
+    <TR>
+        <TH COLSPAN="4"><BR><H3>LIST OF USERS</H3>
+        </TH>
+    </TR>
+    <TR>
+        <TH>EMAIL</TH>
+        <TH>USERNAME</TH>
+        <TH COLSPAN="2">ACTIONS</TH>
+    </TR>
+    <% for(var i=0; i < items.length; i++) { %>
+    <TR ALIGN="CENTER">
+        <TD><%= items[i].email %></TD>
+        <TD><%= items[i].username %></TD>
+        <TD><a href="/users/<%= items[i]._id %>">Edit</a></TD>
+        <TD><a class="delete" href="/delete/<%= items[i]._id %>" onclick="return confirm('Do you want to delete?')">Delete</a>
+        </TD>
+    </TR>
+    <% } %>
+</TABLE>
+
+<a class="fr home-link" href="/home">Back to Home</a>
+
+<% include footer %>

@@ -1,0 +1,28 @@
+
+<% include header %>
+
+<h2 class="txt-cntr">WELCOME TO LOGIN</h2>
+
+<div class="login-head txt-cntr">
+    <form id= "login-form" enctype="multipart/form-data" action="/login" method="post">
+        <div class="fl clr d-i-b">
+            <label>USERNAME</label>
+            <input type="text" name="username" value="<%=username%>"/>
+        </div>
+        <div class="fl clr d-i-b">
+            <label>PASSWORD</label>
+            <input type="password" name="pwd" value=""/>
+        </div>
+        <div class="txt-cntr clr submit-button">
+            <input type="submit"  value="LOGIN"/>
+            <a class="m-l-10" href="/register">REGISTER</a>
+        </div>
+        <% if(loginErr) { %>
+            <span class="err-msg fl"><%=loginErr%></span>
+        <% } %>
+    </form>
+</div>
+
+<a class="fr home-link" href="/">Back to Home</a>
+
+<% include footer %>

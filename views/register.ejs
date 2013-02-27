@@ -1,0 +1,34 @@
+<% include header %>
+
+<h2 class="txt-cntr">Registration</h2>
+
+<div class="login-head txt-cntr">
+    <form id= "login-form" enctype="multipart/form-data" action="/register" method="post">
+        <div class="fl clr d-i-b">
+            <label>EMAIL</label>
+            <input type="text" name="email" value="<%=email%>"/>
+        </div>
+        <div class="fl clr d-i-b">
+            <label>USERNAME</label>
+            <input type="text" name="username" autocomplete="off"  value="<%=username%>"/>
+        </div>
+        <div class="fl clr d-i-b">
+            <label>PASSWORD</label>
+            <input type="password" autocomplete="off" name="pwd" value=""/>
+        </div>
+        <div class="fl clr d-i-b">
+            <label>CONFIRM PASSWORD</label>
+            <input type="password" name="confirmpwd" value=""/>
+        </div>
+        <div class="txt-cntr clr submit-button">
+            <input type="submit"  value="Submit"/>
+        </div>
+        <% if(locals.regErr) { %>
+        <span class="err-msg fl"><%=regErr%></span>
+        <% } %>
+    </form>
+</div>
+
+<a class="fr home-link" href="/">Back to Home</a>
+
+<% include footer %>

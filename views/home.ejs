@@ -1,0 +1,23 @@
+<% include header %>
+
+<h2 class="txt-cntr">WELCOME <%=username %> </h2>
+
+<div class ="loginContainer">
+    <% if(!user) {  %>
+    <a href="/login">LOGIN USING APP</a>
+    <% } else {  %>
+    <a href="/logout">LOGOUT</a>
+    <% }   %>
+</div>
+
+<a class="home-link" href="/users" title="All Users">View All Users</a>
+
+<p class="content"> You are logged in as <b><%=username %></b>. You can view list of all users by clicking the "<b>View All
+    Users</b>" link and edit or delete user in corresponding page...
+    <br/><br/>
+    Try it... <br/>
+    <br/>Enjoy learning Node.js...
+</p>
+
+
+<% include footer %>
