@@ -1,9 +1,9 @@
 NODE USER MANAGEMENT
-=============
+====================
 
-The **NODE USER MANAGEMENT** adds support for a database based user system and
-authenticating users. This application generally focuses to beginners in node.js.
-The application will give them a general idea to how to use Express framework for node to MongoDB as data storage.
+This repository demonstrates an sample application support for a Mongo database based user system and
+authenticating users. It generally focuses to beginners in **node.js**.
+The application will give them a basic idea about  **Express framework** for node with **MongoDB** as data storage.
 
 This application have used [express-validator](https://github.com/ctavan/express-validator),
  an express.js middleware for [node-validator](https://github.com/chriso/node-validator) for input validations.
@@ -12,8 +12,9 @@ Features include:
 
 - Users can be stored to Mongo DB
 - Registration support
+- Users can be edited and deleted
 
-**Caution:** This application is developed in sync with [Express framework for node.js](http://expressjs.com/).
+**Caution:** This application is developed in sync with [Express framework](http://expressjs.com/) for node.js.
 
 Documentation
 -------------
@@ -31,7 +32,7 @@ All the installation instructions are located in [documentation](https://github.
 License
 -------
 
-This application is under the MIT license.
+This repository is licensed under the MIT license.
 
 About
 -----
