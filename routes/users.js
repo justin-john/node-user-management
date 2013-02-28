@@ -7,8 +7,8 @@ var mongo = require('mongodb'),
     server = new Server('localhost', 27017, {auto_reconnect: true}),
     /* Create a database "test" in Mongo DB, before connecting */
     db = new Db('test', server, {safe: true}),
-	/* Name your collection, use this variable instead of using collection name directly */
-	yourCollectionName = 'user';
+    /* Name your collection, use this variable instead of using collection name directly */
+    yourCollectionName = 'user';
 
 
 db.open(function(err, db) {
@@ -21,8 +21,8 @@ db.open(function(err, db) {
             }
         });
     } else {
-		console.log("There is no 'test' database in MongoDB. Please create a database called 'test' in Mongo and proceed... ");
-	}
+  	console.log("There is no 'test' database in MongoDB. Please create a database called 'test' in Mongo and proceed... ");
+    }
 });
 
 /*
@@ -40,7 +40,6 @@ exports.login = function(req, res){
         res.render('login', { user: req.session.username, loginErr: null, username: '' });
     }
     else res.redirect('/');
-
 };
 
 /*
