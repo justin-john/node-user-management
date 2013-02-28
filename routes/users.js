@@ -6,97 +6,35 @@ var mongo = require('mongodb'),
     /* Enter the server connection parameters */
     server = new Server('localhost', 27017, {auto_reconnect: true}),
     /* Create a database "test" in Mongo DB, before connecting */
-    db = new Db('test', server, {safe: true});
+    db = new Db('test', server, {safe: true}),
+	/* Name your collection, use this variable instead of using collection name directly */
+	yourCollectionName = 'user';
 
 
 db.open(function(err, db) {
     if(!err) {
-        console.log("Connected to our 'test' mongo database");
-        db.collection('user', {strict:true, safe:true}, function(errCol, collection) {
+        console.log("Connected to your 'test' mongo database");
+        db.collection(yourCollectionName, {strict:true, safe:true}, function(errCol, collection) {
             if (errCol) {
-                console.log("The 'user' collection doesn't exist");
+                console.log("The "+yourCollectionName+" collection doesn't exist");
                 createCollection();
             }
         });
-    }
+    } else {
+		console.log("There is no 'test' database in MongoDB. Please create a database called 'test' in Mongo and proceed... ");
+	}
 });
 
+/*
+*  Renders to index page before login.
+* */
 exports.index = function(req, res){
-    db.collection('user', function(err, collection) {
-        collection.find().toArray(function(err, items) {
-            //res.send(items);
-            res.render('index', { user: req.session.username });
-
-        });
-    });
+    res.render('index', { user: req.session.username });
 };
 
-exports.home = function(req, res){
-    if (exports.isLoggedIn(req, res)) {
-        return res.render('home',
-            { user: req.session.username, username: req.session.username }
-        );
-    } else {
-        return res.render('login', { user: req.session.username, loginErr: null, username: '' });
-    }
-};
-
-exports.registerView = function(req, res){
-    if (typeof req.session.username != 'undefined') {
-        res.render('home', { user: req.session.username });
-    } else {
-        res.render('register', {
-            user: req.session.username,
-            regErr: null,
-            username: '',
-            email: ''
-        });
-    }
-};
-
-exports.registerUser = function(req, res){
-
-    req.assert('email', 'Please enter a valid email').len(6,64).isEmail();
-    req.assert('username', "The username can't be empty!").notEmpty();
-    req.assert('pwd', "The password can't be empty and 6 - 16 characters required").notEmpty().len(6,16);
-    req.assert('confirmpwd', "The confirm password can't be empty").notEmpty();
-    req.assert('pwd', 'Passwords do not match').equals(req.param('confirmpwd'));
-
-    var errors = req.validationErrors();
-    if (errors) {
-        return res.render('register',
-            { user: req.session.username,  username: req.body.username, regErr: errors[0].msg, email: req.body.email }
-        );
-    }
-
-    db.collection('user', function (err, collection) {
-
-        collection.findOne({'email':req.body.email}, function(err, result) {
-            if (result) {
-                return res.render('register',
-                    { user: req.session.username,  username: req.body.username, regErr: 'This email is already taken!', email: req.body.email }
-                );
-            } else {
-                collection.insert({
-                    email:req.body.email,
-                    username:req.body.username,
-                    password:req.body.pwd,
-                    created: Date.now()
-                }, {safe:true}, function (err, result) {
-                    if (result) {
-                        req.session.username = req.body.username;
-                        res.render('home',
-                            { user:req.body.username, username:req.body.username }
-                        );
-                    }
-                });
-            }
-        });
-
-    });
-
-};
-
+/*
+*  Renders to login page, if no user is logged.
+* */
 exports.login = function(req, res){
     if (typeof req.session.username == 'undefined') {
         res.render('login', { user: req.session.username, loginErr: null, username: '' });
@@ -120,7 +58,7 @@ exports.loginSubmit = function(req, res){
         );
     }
 
-    db.collection('user', function(err, collection) {
+    db.collection(yourCollectionName, function(err, collection) {
         collection.findOne({'username':req.body.username, 'password':req.body.pwd}, function(err, result) {
             if (result) {
                 req.session.username = result.username;
@@ -136,28 +74,98 @@ exports.loginSubmit = function(req, res){
 };
 
 /*
-*  Logout current user and clear session
+*  Renders to home page after login.
 * */
-exports.logout = function(req, res){
-    req.session.destroy();
-    res.redirect('/');
+exports.home = function(req, res){
+    if (exports.isLoggedIn(req, res)) {
+        return res.render('home',
+            { user: req.session.username, username: req.session.username }
+        );
+    } else {
+        return res.render('login', { user: req.session.username, loginErr: null, username: '' });
+    }
 };
 
+/*
+*  Renders to registration page.
+* */
+exports.registerView = function(req, res){
+    if (typeof req.session.username != 'undefined') {
+        res.render('home', { user: req.session.username });
+    } else {
+        res.render('register', {
+            user: req.session.username,
+            regErr: null,
+            username: '',
+            email: ''
+        });
+    }
+};
 
+/*
+*  Submit the new user registration.
+* */
+exports.registerUser = function(req, res){
+
+    req.assert('email', 'Please enter a valid email').len(6,64).isEmail();
+    req.assert('username', "The username can't be empty!").notEmpty();
+    req.assert('pwd', "The password can't be empty and 6 - 16 characters required").notEmpty().len(6,16);
+    req.assert('confirmpwd', "The confirm password can't be empty").notEmpty();
+    req.assert('pwd', 'Passwords do not match').equals(req.param('confirmpwd'));
+
+    var errors = req.validationErrors();
+    if (errors) {
+        return res.render('register',
+            { user: req.session.username,  username: req.body.username, regErr: errors[0].msg, email: req.body.email }
+        );
+    }
+
+    db.collection(yourCollectionName, function (err, collection) {
+        collection.findOne({'email':req.body.email}, function(err, result) {
+            if (result) {
+                return res.render('register',
+                    { user: req.session.username,  username: req.body.username, regErr: 'This email is already taken!', email: req.body.email }
+                );
+            } else {
+                collection.insert({
+                    email:req.body.email,
+                    username:req.body.username,
+                    password:req.body.pwd,
+                    created: Date.now()
+                }, {safe:true}, function (err, result) {
+                    if (result) {
+                        req.session.username = req.body.username;
+                        res.render('home',
+                            { user:req.body.username, username:req.body.username }
+                        );
+                    }
+                });
+            }
+        });
+    });
+
+};
+
+/*
+*  Renders to list of all users after login.
+* */
 exports.findAll = function(req, res) {
     if (!exports.isLoggedIn(req, res)) {
         return res.render('login', { user: req.session.username, loginErr: null, username: '' });
     }
-    db.collection('user', function(err, collection) {
+    db.collection(yourCollectionName, function(err, collection) {
         collection.find().toArray(function(err, items) {
             res.render('users', { items: items, user: req.session.username, username: req.body.username });
         });
     });
 };
 
+/*
+*  Renders to edit page of user.
+* */
 exports.updateView = function(req, res) {
     var id = req.params.id;
-    db.collection('user', {w:0}, function(err, collection) {
+    db.collection(yourCollectionName, {w:0}, function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, result) {
             if (result) {
                 res.render('update', { id: id, email: result.email, username: result.username });
@@ -166,6 +174,9 @@ exports.updateView = function(req, res) {
     });
 }
 
+/*
+*  Updating the user details.
+* */
 exports.updateUser = function(req, res) {
 
     var id   = req.params.id,
@@ -186,7 +197,7 @@ exports.updateUser = function(req, res) {
 
     console.log('Updating user: ' + id);
     console.log(JSON.stringify(user));
-    db.collection('user', function(err, collection) {
+    db.collection(yourCollectionName, function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, { email: user.email, username: user.username, password: user.pwd  }, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating user: ' + err);
@@ -199,10 +210,13 @@ exports.updateUser = function(req, res) {
     });
 }
 
+/*
+*  Delete the user.
+* */
 exports.deleteUser = function(req, res) {
     var id = req.params.id;
     console.log('Deleting user: ' + id);
-        db.collection('user', function(err, collection) {
+        db.collection(yourCollectionName, function(err, collection) {
             collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
                 if (err) {
                     res.send({'error':'An error has occurred - ' + err});
@@ -213,26 +227,45 @@ exports.deleteUser = function(req, res) {
         });
 }
 
+/*
+*  Remove all documents in your collection.
+*  The url '/remove' will be used.
+* */
 exports.removeAllUser = function(req, res) {
-    db.collection('user', {w:0}, function(err, collection) {
+    db.collection(yourCollectionName, {w:0}, function(err, collection) {
         collection.remove();
     });
     res.redirect('back');
 }
 
+/*
+*  Drop your collection.
+*  The url '/drop' will be used.
+* */
 exports.dropCol = function(req, res) {
-    db.collection('user', {w:0}, function(err, collection) {
+    db.collection(yourCollectionName, {w:0}, function(err, collection) {
         collection.drop();
     });
     res.redirect('back');
 }
 
+/*
+*  Check the user is logged or not.
+* */
 exports.isLoggedIn = function(req, res) {
     if (typeof req.session.username !== 'undefined') {
         return true;
     }
     return false;
 }
+
+/*
+*  Logout current user and clear session
+* */
+exports.logout = function(req, res){
+    req.session.destroy();
+    res.redirect('/');
+};
 
 /*
 *  Create a collection for database
@@ -272,9 +305,10 @@ var insertUserData = function() {
         }
     ];
 
-    db.collection('user', function(err, collection) {
+    db.collection(yourCollectionName, function(err, collection) {
         collection.insert(users, {safe:true}, function(err, result) {
             console.log(result);
+            if (result) console.log("Sucessfully inserted sample data to your collection");
         });
     });
 
