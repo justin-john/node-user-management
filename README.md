@@ -31,8 +31,8 @@ All the installation instructions are located in [documentation](https://github.
 
 License
 -------
-
 This repository is licensed under the MIT license.
+Copyright (c) 2013 Justin John Mathews <justinjohnmathews@gmail.com>
 
 About
 -----
