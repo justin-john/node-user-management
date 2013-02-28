@@ -7,7 +7,8 @@ Getting Started With Node User Management
 2. Install Mongo Driver in server.
 
 **Note:**
-Please create a database called **test** in MongoDB.
+Please create a database called **test** in MongoDB. Also check mongo connection present in __routes/users.js__ with your crendentials for
+connection.
 
 ## Installation
 
