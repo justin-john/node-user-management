@@ -2,8 +2,9 @@ var mongo = require('mongodb'),
     Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure,
-
-    server = new Server('localhost', 27017, {auto_reconnect: true});
+    
+    /* Enter the server connection parameters */
+    server = new Server('localhost', 27017, {auto_reconnect: true}),
     /* Create a database "test" in Mongo DB, before connecting */
     db = new Db('test', server, {safe: true});
 
@@ -21,7 +22,7 @@ db.open(function(err, db) {
 });
 
 exports.index = function(req, res){
-    db.collection('test_name', function(err, collection) {
+    db.collection('user', function(err, collection) {
         collection.find().toArray(function(err, items) {
             //res.send(items);
             res.render('index', { user: req.session.username });
