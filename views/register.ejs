@@ -3,18 +3,18 @@
 <h2 class="txt-cntr">Registration</h2>
 
 <div class="login-head txt-cntr">
-    <form id= "login-form" enctype="multipart/form-data" action="/register" method="post">
+    <form id= "login-form" enctype="multipart/form-data" autocomplete="off" action="/register" method="post">
         <div class="fl clr d-i-b">
             <label>EMAIL</label>
             <input type="text" name="email" value="<%=email%>"/>
         </div>
         <div class="fl clr d-i-b">
             <label>USERNAME</label>
-            <input type="text" name="username" autocomplete="off"  value="<%=username%>"/>
+            <input type="text" name="username"  value="<%=username%>"/>
         </div>
         <div class="fl clr d-i-b">
             <label>PASSWORD</label>
-            <input type="password" autocomplete="off" name="pwd" value=""/>
+            <input type="password" name="pwd" value=""/>
         </div>
         <div class="fl clr d-i-b">
             <label>CONFIRM PASSWORD</label>

@@ -2,34 +2,36 @@
 
 <h2 class="txt-cntr">Edit User</h2>
 <% if (locals.success) { %>
-    <div class="txt-cntr sucess-msg">THE USER IS SUCCESSFULLY EDITED...</div>
-<% } %>
+<div class="txt-cntr sucess-msg">SUCCESSFULLY UPDATED USER...</div>
+<% }
+var disableAttr = (locals.disable) ? 'disabled':''; %>
+
 <div class="login-head txt-cntr">
-    <form id= "login-form" enctype="multipart/form-data" action="/users/<%=id%>" method="post">
+    <form id= "login-form" enctype="multipart/form-data" autocomplete="off" action="/users/<%=id%>" method="post">
         <div class="fl clr d-i-b">
             <label>EMAIL</label>
-            <input type="text" name="email" value="<%=email%>"/>
+            <input type="text" name="email" value="<%=email%>" <%= disableAttr %> />
         </div>
         <div class="fl clr d-i-b">
             <label>USERNAME</label>
-            <input type="text" name="username" autocomplete="off" value="<%=username%>"/>
+            <input type="text" name="username" value="<%=username%>"  <%= disableAttr %> />
         </div>
         <div class="fl clr d-i-b">
             <label>PASSWORD</label>
-            <input type="password" name="pwd" autocomplete="off" value=""/>
+            <input type="password" name="pwd" value=""  <%= disableAttr %> />
         </div>
         <div class="fl clr d-i-b">
             <label>CONFIRM PASSWORD</label>
-            <input type="password" name="confirmpwd" value=""/>
+            <input type="password" name="confirmpwd" value=""  <%= disableAttr %> />
         </div>
         <div class="txt-cntr clr submit-button">
-            <input type="submit"  value="Submit"/>
+            <input type="submit"  value="Submit"  <%= disableAttr %> />
         </div>
         <% if(locals.err) { %>
         <span class="err-msg fl"><%=err%></span>
         <% } %>
     </form>
 </div>
-        <a class="fr home-link" href="/home">Back to Home</a>
+<a class="fr home-link" href="/home">Back to Home</a>
 
 <% include footer %>
