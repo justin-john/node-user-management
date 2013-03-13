@@ -10,7 +10,7 @@
         , "ejs": ">= 0.8.3"
         , "mongodb": ">= 0.9.6-7"
         , "express-validator": ">= 0.3.1"
-    }
+    },
     "main": "",
     "subdomain": "usermanagement",
     "licenses": [
