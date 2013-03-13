@@ -1,9 +1,10 @@
 
 {
     "name": "user-mangement",
-    "description": "User Mangement with Express",
+    "description": "An example node application demonstrates support for a Mongo database based user system and authenticating users",
     "version": "0.0.1",
     "private": true,
+    "author": { "name": "Justin John Mathews", "email": "justinjohnmathews@gmail.com" },
     "dependencies": {
         "express": "3.0.5"
         , "stylus": ">= 0.0.1"
@@ -11,4 +12,14 @@
         , "mongodb": ">= 0.9.6-7"
         , "express-validator": ">= 0.3.1"
     }
+    "main": "",
+    "subdomain: "usermanagement",
+    "licenses: [
+        { "url": "https://github.com/justin-john/node-user-management/blob/master/README.md#license", "type": "MIT" }
+    ],
+    "scripts": { "start": "bin/server" },
+    "engines": { "node": ">=0.8.16" },
+    "homepage": "http://justin-john.github.com/node-user-management",
+    "bugs": { "url": "https://github.com/justin-john/node-user-management/issues" },
+    "repository": { "url": "git@github.com:justin-john/node-user-management.git", "type": "git" },
 }
