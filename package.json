@@ -16,9 +16,7 @@
     "licenses": [
         { "url": "https://github.com/justin-john/node-user-management/blob/master/README.md#license", "type": "MIT" }
     ],
-    "scripts": { "start": "bin/server" },
-    "engines": { "node": ">=0.8.16" },
     "homepage": "http://justin-john.github.com/node-user-management",
     "bugs": { "url": "https://github.com/justin-john/node-user-management/issues" },
-    "repository": { "url": "git@github.com:justin-john/node-user-management.git", "type": "git" },
+    "repository": { "url": "git@github.com:justin-john/node-user-management.git", "type": "git" }
 }
