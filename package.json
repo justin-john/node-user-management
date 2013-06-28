@@ -1,6 +1,6 @@
 {
     "name": "user-mangement",
-    "description": "An example node application demonstrates support for a Mongo database based user system and authenticating users",
+    "description": "An example node application demonstrates support for a MongoDB based user system and authenticating users",
     "version": "0.0.1",
     "private": true,
     "author": { "name": "Justin John Mathews", "email": "justinjohnmathews@gmail.com" },
@@ -9,10 +9,8 @@
         , "stylus": ">= 0.0.1"
         , "ejs": ">= 0.8.3"
         , "mongodb": ">= 0.9.6-7"
-        , "express-validator": ">= 0.3.1"
+        , "express-validator": ">= 0.6.0"
     },
-    "main": "",
-    "subdomain": "usermanagement",
     "licenses": [
         { "url": "https://github.com/justin-john/node-user-management/blob/master/README.md#license", "type": "MIT" }
     ],
