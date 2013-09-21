@@ -10,10 +10,10 @@ This application have used [express-validator](https://github.com/ctavan/express
 
 Features include:
 
-- Users can be stored to Mongo DB
 - Registration support
 - Login support
 - Users can be edited and deleted
+- Users can be stored in MongoDB
 
 **Caution:** This repository is developed in sync with [Express framework](http://expressjs.com/) for node.js.
 
